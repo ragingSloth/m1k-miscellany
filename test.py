@@ -32,4 +32,6 @@ while True:
        for i in range(4):
    	       pio("PH24*1")
    	       time.sleep(1)
-
+       pio("PB9*1")
+       time.sleep(10)
+       pio("PB9*1")
