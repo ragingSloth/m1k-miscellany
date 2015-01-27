@@ -1,11 +1,11 @@
-Description=Phone Home Reverse SSH Service
+Description=Testing Service
 ConditionPathExists=|/usr/bin
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 User=root
-ExecStart=/usr/bin/python /root/m1k-imaging/test.py
+ExecStart=/bin/bash -c 'cd /root/m1k-imaging; /usr/bin/python test.py'
 Type=simple
 #RestartSec=3
 #Restart=always
