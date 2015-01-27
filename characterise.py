@@ -21,7 +21,10 @@ for name,chan in device.chans.items():
 	print 'current Offset', name, currentOffset
 
 	chan.set_mode('d')
-	d.ctrl_transfer(0x40,0x50,32,0,0)
+	if name == 'A':
+		d.ctrl_transfer(0x40,0x50,32,0,0)
+	if name == 'B':
+		d.ctrl_transfer(0x40,0x50,37,0,0)
 	newData = chan.get_samples(500)
 	voltageOffset = np.mean([x[0] for x in newData])
 	print 'voltage Offset', name, voltageOffset
@@ -37,7 +40,10 @@ for name,chan in device.chans.items():
 
 	data = np.array(data).T
 
-	d.ctrl_transfer(0x40,0x51,32,0,0)
+	if name == 'A':
+		d.ctrl_transfer(0x40,0x51,32,0,0)
+	if name == 'B':
+		d.ctrl_transfer(0x40,0x51,37,0,0)
 
 #from pylab import *
 #plot(simvPoints, data[1]-simvPoints, '.')
