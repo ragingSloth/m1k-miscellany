@@ -1,0 +1,14 @@
+Description=Phone Home Reverse SSH Service
+ConditionPathExists=|/usr/bin
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=root
+ExecStart=/usr/bin/python /root/m1k-imaging/test.py
+Type=simple
+RestartSec=3
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
