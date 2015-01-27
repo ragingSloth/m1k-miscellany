@@ -1,0 +1,41 @@
+set mode SVMI
+sweep voltage, record current
+record current zeropoint as average of common mode maximums
+record voltage offsets and full scale gain error matching to 0-5v
+switch mode SIMV
+sweep setpoint with 2.5v / 50o termination to match current zero point
+record dac value as simv=0
+
+first order characterisation per channel:
+
+* setpoint vs measured for voltage, svmi
+* voltage vs measured current offset (cmrr), svmi
+* setpoint vs measured for current, simv
+
+two modes:
+
+svmi unloaded
+simv 2.5v / 49.9o loaded (0.1%?)
+svmi 2.5v / 49.9o
+
+datapoints
+
+slope-intercept for setpoint/measured voltage, mapping to [0v,5v] domain
+slope-intercept for setpoint/measured current, interpolating to [-0.2,0.2] from measured [-0.04,0.04] (to not saturate against rails)
+
+
+f(mi) -> amps
+f(mv) -> volts
+f(volts) -> sv
+f(amps) -> si
+
+modeswitch to hi-z requires simv ~= 0
+
+----
+
+((val / 65535.0 - 0.61) * 0.4 + 0.048)
+6.10360875867857e-6*val - 0.196
+
+v = 65536*(2.5 * 4./5. + 5.*.2*20.*0.5*val)/5.0;
+131072.0*val + 26214.4
+
